@@ -1,4 +1,4 @@
-import { createStitches } from '@stitches/react';
+import { createStitches } from "@stitches/react";
 
 export const {
   styled,
@@ -12,14 +12,17 @@ export const {
 } = createStitches({
   theme: {
     colors: {
-      gray400: 'gainsboro',
-      gray500: 'lightgray',
+      gray400: "gainsboro",
+      gray500: "lightgray",
     },
   },
   media: {
-    bp1: '(min-width: 480px)',
+    bp1: "(min-width: 480px)",
   },
   utils: {
-    marginX: (value: string | number) => ({ marginLeft: value, marginRight: value }),
+    marginX: (value: string | number) => ({
+      marginLeft: value,
+      marginRight: value,
+    }),
   },
 });

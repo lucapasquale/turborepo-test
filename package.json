@@ -6,21 +6,21 @@
     "apps/*",
     "packages/*"
   ],
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=14.0.0"
+  },
+  "packageManager": "yarn@1.22.17",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
+  "dependencies": {},
   "devDependencies": {
     "eslint-config-custom": "*",
-    "prettier": "latest",
-    "turbo": "latest"
-  },
-  "engines": {
-    "npm": ">=7.0.0",
-    "node": ">=14.0.0"
-  },
-  "dependencies": {},
-  "packageManager": "yarn@1.22.17"
+    "prettier": "^2.7.1",
+    "turbo": "^1.4.2"
+  }
 }
