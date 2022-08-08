@@ -14,15 +14,8 @@ export const {
     colors: {
       gray400: "gainsboro",
       gray500: "lightgray",
+
+      error: "tomato",
     },
-  },
-  media: {
-    bp1: "(min-width: 480px)",
-  },
-  utils: {
-    marginX: (value: string | number) => ({
-      marginLeft: value,
-      marginRight: value,
-    }),
   },
 });
