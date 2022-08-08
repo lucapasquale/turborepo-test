@@ -1,6 +1,6 @@
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Button, FormItem, styled, theme } from "ui";
+import { Button, FormItem, Input, styled, theme } from "ui";
 
 const Wrapper = styled("div", {
   display: "flex",
@@ -36,7 +36,7 @@ export default function Web() {
           register={register}
           error={errors.name}
         >
-          <input />
+          <Input />
         </FormItem>
 
         <FormItem
@@ -46,7 +46,7 @@ export default function Web() {
           register={register}
           error={errors.age}
         >
-          <input type="number" />
+          <Input type="number" />
         </FormItem>
 
         <Button type="submit" kind="primary">

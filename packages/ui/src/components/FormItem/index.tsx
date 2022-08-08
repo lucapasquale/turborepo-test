@@ -1,11 +1,6 @@
 import React from "react";
+import { FieldError, Path, UseFormRegister } from "react-hook-form";
 import * as LabelPrimitive from "@radix-ui/react-label";
-import {
-  FieldError,
-  Path,
-  UseFormRegister,
-  UseFormRegisterReturn,
-} from "react-hook-form";
 
 import { styled, theme } from "../../stitches.config";
 
@@ -49,13 +44,21 @@ export function FormItem<FormValue>({
 
     return React.cloneElement(children, {
       id: name,
+      invalid: !!error,
       "aria-invalid": !!error ? "true" : "false",
       ...register(name, { required: required ? REQUIRED_MESSAGE : false }),
     });
   }, [children, register, error, name, required]);
 
   return (
-    <Box css={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+    <Box
+      css={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "4px",
+        marginBottom: "12px",
+      }}
+    >
       <Box
         css={{
           display: "flex",
