@@ -1,5 +1,9 @@
+import * as z from "zod";
 import React from "react";
+import type { NextPage } from "next";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
+
 import { Button, FormItem, Input, styled, theme } from "ui";
 
 const Wrapper = styled("div", {
@@ -10,17 +14,21 @@ const Wrapper = styled("div", {
   gap: 5,
 });
 
-type FormValue = {
-  name: string;
-  age: number;
-};
+const schema = z.object({
+  name: z.string().min(1, { message: "Required" }),
+  age: z.number().gt(10, { message: "Must be greater than 10" }),
+});
+type FormValue = z.infer<typeof schema>;
 
-export default function Web() {
+const Page: NextPage = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValue>();
+  } = useForm<FormValue>({
+    resolver: zodResolver(schema),
+    defaultValues: { age: 8 },
+  });
 
   const onSubmit: SubmitHandler<FormValue> = (data) => console.log(data);
 
@@ -30,20 +38,20 @@ export default function Web() {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormItem
-          required
-          title="Name"
           name="name"
+          title="Name"
           register={register}
+          options={{ required: true }}
           error={errors.name}
         >
           <Input />
         </FormItem>
 
         <FormItem
-          required
-          title="Age"
           name="age"
+          title="Age"
           register={register}
+          options={{ required: true, valueAsNumber: true }}
           error={errors.age}
         >
           <Input type="number" />
@@ -55,4 +63,6 @@ export default function Web() {
       </form>
     </Wrapper>
   );
-}
+};
+
+export default Page;

@@ -1,5 +1,10 @@
 import React from "react";
-import { FieldError, Path, UseFormRegister } from "react-hook-form";
+import {
+  FieldError,
+  Path,
+  RegisterOptions,
+  UseFormRegister,
+} from "react-hook-form";
 import * as LabelPrimitive from "@radix-ui/react-label";
 
 import { styled, theme } from "../../stitches.config";
@@ -19,14 +24,11 @@ const StyledLabel = styled(LabelPrimitive.Root, {
 
 type Props<FormValue> = React.ComponentProps<typeof StyledLabel> & {
   title: string;
-  register: UseFormRegister<FormValue>;
   name: Path<FormValue>;
-  error: FieldError | undefined;
-  required?: boolean;
+  register: UseFormRegister<FormValue>;
+  options?: RegisterOptions<FormValue>;
+  error?: FieldError | undefined;
 };
-
-// Should use translatable message
-const REQUIRED_MESSAGE = "This field is required";
 
 export function FormItem<FormValue>({
   children,
@@ -34,7 +36,7 @@ export function FormItem<FormValue>({
   register,
   name,
   error,
-  required,
+  options = {},
   ...props
 }: Props<FormValue>) {
   const value = React.useMemo(() => {
@@ -46,9 +48,9 @@ export function FormItem<FormValue>({
       id: name,
       invalid: !!error,
       "aria-invalid": !!error ? "true" : "false",
-      ...register(name, { required: required ? REQUIRED_MESSAGE : false }),
+      ...register(name, options),
     });
-  }, [children, register, error, name, required]);
+  }, [children, register, error, name, options]);
 
   return (
     <Box
@@ -75,7 +77,7 @@ export function FormItem<FormValue>({
           css={{ width: 100, lineHeight: "35px", marginRight: 15 }}
         >
           {title}
-          {required && (
+          {options.required && (
             <Box
               as="span"
               role="alert"
