@@ -1,4 +1,6 @@
 import React from "react";
+import { useObjectRef } from "@react-aria/utils";
+
 import { styled, theme } from "../../stitches.config";
 
 const StyledInput = styled("input", {
@@ -12,7 +14,7 @@ const StyledInput = styled("input", {
   fontSize: 15,
   lineHeight: 1,
   boxShadow: "0 0 0 1px black",
-  "&:focus": { boxShadow: "0 0 0 2px black" },
+  "&:focus": { boxShadow: `0 0 0 2px ${theme.colors.primary}` },
 
   variants: {
     invalid: {
@@ -24,17 +26,36 @@ const StyledInput = styled("input", {
   },
 });
 
-type Props = React.ComponentProps<typeof StyledInput> & {
-  invalid?: boolean;
-};
+import { AriaTextFieldOptions, useTextField } from "react-aria";
+
+type Props = AriaTextFieldOptions<"input"> & {};
 
 export const Input = React.forwardRef(function Input(
-  { children, invalid, ...props }: Props,
-  ref: React.ForwardedRef<HTMLInputElement>
+  props: Props,
+  forwardedRef: React.ForwardedRef<HTMLInputElement>
 ) {
+  const ref = useObjectRef(forwardedRef);
+
+  const { labelProps, inputProps, descriptionProps, errorMessageProps } =
+    useTextField(props, ref);
+
   return (
-    <StyledInput {...props} ref={ref} invalid={invalid}>
-      {children}
-    </StyledInput>
+    <div style={{ display: "flex", flexDirection: "column", width: 200 }}>
+      <label {...labelProps}>{props.label}</label>
+
+      <StyledInput {...inputProps} ref={ref} />
+
+      {props.description && (
+        <div {...descriptionProps} style={{ fontSize: 12 }}>
+          {props.description}
+        </div>
+      )}
+
+      {props.errorMessage && (
+        <div {...errorMessageProps} style={{ color: "red", fontSize: 12 }}>
+          {props.errorMessage}
+        </div>
+      )}
+    </div>
   );
 });

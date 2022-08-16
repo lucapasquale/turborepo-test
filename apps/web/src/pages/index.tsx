@@ -2,9 +2,9 @@ import * as z from "zod";
 import React from "react";
 import type { NextPage } from "next";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
-import { Button, FormItem, Input, styled, theme } from "ui";
+import { Button, Checkbox, FormItem, Input, styled, theme } from "ui";
 
 const Wrapper = styled("div", {
   display: "flex",
@@ -15,19 +15,20 @@ const Wrapper = styled("div", {
 });
 
 const schema = z.object({
-  name: z.string().min(1, { message: "Required" }),
-  age: z.number().gt(10, { message: "Must be greater than 10" }),
+  name: z.string(),
+  age: z.number(),
+  test: z.boolean(),
 });
 type FormValue = z.infer<typeof schema>;
 
 const Page: NextPage = () => {
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValue>({
     resolver: zodResolver(schema),
-    defaultValues: { age: 8 },
+    // defaultValues: { name: "Luca", age: 28, test: false },
   });
 
   const onSubmit: SubmitHandler<FormValue> = (data) => console.log(data);
@@ -37,25 +38,43 @@ const Page: NextPage = () => {
       <h1>Form</h1>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <FormItem
+        <Controller
           name="name"
-          title="Name"
-          register={register}
-          options={{ required: true }}
-          error={errors.name}
-        >
-          <Input />
-        </FormItem>
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => (
+            <Input
+              label="Name"
+              errorMessage={errors.name?.message}
+              {...field}
+            />
+          )}
+        />
 
-        <FormItem
+        <Controller
           name="age"
-          title="Age"
-          register={register}
-          options={{ required: true, valueAsNumber: true }}
-          error={errors.age}
-        >
-          <Input type="number" />
-        </FormItem>
+          control={control}
+          rules={{ required: true, min: 5 }}
+          render={({ field }) => (
+            <Input
+              type="number"
+              label="Name"
+              {...field}
+              errorMessage={errors.age?.message}
+              value={String(field.value)}
+            />
+          )}
+        />
+
+        {/* <Controller
+          name="test"
+          control={control}
+          render={({ field }) => (
+            <Checkbox {...field} value={String(field.value)} errorMessage={errors.test}>
+              Test 2
+            </Checkbox>
+          )}
+        /> */}
 
         <Button type="submit" kind="primary">
           Submit

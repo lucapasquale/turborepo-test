@@ -23,9 +23,9 @@ const StyledLabel = styled(LabelPrimitive.Root, {
 });
 
 type Props<FormValue> = React.ComponentProps<typeof StyledLabel> & {
-  title: string;
   name: Path<FormValue>;
   register: UseFormRegister<FormValue>;
+  title?: string;
   options?: RegisterOptions<FormValue>;
   error?: FieldError | undefined;
 };
@@ -46,7 +46,7 @@ export function FormItem<FormValue>({
 
     return React.cloneElement(children, {
       id: name,
-      invalid: !!error,
+      invalid: !!error ? "true" : "false",
       "aria-invalid": !!error ? "true" : "false",
       ...register(name, options),
     });
@@ -56,19 +56,12 @@ export function FormItem<FormValue>({
     <Box
       css={{
         display: "flex",
-        flexDirection: "column",
-        gap: "4px",
-        marginBottom: "12px",
+        padding: "0 20px",
+        flexWrap: "wrap",
+        marginBottom: "20px",
       }}
     >
-      <Box
-        css={{
-          display: "flex",
-          padding: "0 20px",
-          flexWrap: "wrap",
-          alignItems: "center",
-        }}
-      >
+      {title && (
         <StyledLabel
           {...props}
           as="label"
@@ -87,15 +80,21 @@ export function FormItem<FormValue>({
             </Box>
           )}
         </StyledLabel>
-
-        {value}
-      </Box>
-
-      {!!error && (
-        <Box as="span" role="alert" css={{ color: theme.colors.error }}>
-          {error.message}
-        </Box>
       )}
+
+      <Box css={{ display: "flex", flexDirection: "column" }}>
+        {value}
+
+        {!!error && (
+          <Box
+            as="span"
+            role="alert"
+            css={{ color: theme.colors.error, marginTop: "2px" }}
+          >
+            {error.message}
+          </Box>
+        )}
+      </Box>
     </Box>
   );
 }
