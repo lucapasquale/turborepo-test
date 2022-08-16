@@ -44,10 +44,7 @@ const StyledTrigger = styled(AccordionPrimitive.Trigger, {
 
 const StyledContent = styled(AccordionPrimitive.Content, {
   overflow: "hidden",
-});
-
-const StyledContentText = styled("div", {
-  padding: "15px 20px",
+  padding: "8px 64px 24px 48px",
 });
 
 const StyledChevron = styled(ChevronDownIcon, {
@@ -74,7 +71,7 @@ export const AccordionTrigger = React.forwardRef(
 export const AccordionContent = React.forwardRef(
   ({ children, ...props }: any, forwardedRef: React.Ref<HTMLDivElement>) => (
     <StyledContent {...props} ref={forwardedRef}>
-      <StyledContentText>{children}</StyledContentText>
+      {children}
     </StyledContent>
   )
 );
