@@ -14,10 +14,12 @@ export const {
     colors: {
       primary: "green",
 
-      gray400: "gainsboro",
-      gray500: "lightgray",
+      core50: "#26A791",
 
-      error: "tomato",
+      coolGray10: "#F2F4F8",
+      coolGray40: "#A2A9B0",
+
+      gray100: "#121619",
     },
   },
 });
