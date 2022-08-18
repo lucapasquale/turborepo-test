@@ -21,10 +21,12 @@ const StyledTrigger = styled("button", {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  fontSize: 15,
+  fontSize: 14,
+  fontWeight: 500,
   lineHeight: 1,
   color: theme.colors.gray100,
   userSelect: "none",
+  maxWidth: "fit-content",
 
   "&:disabled": { color: theme.colors.gray40 },
   "&:hover": { backgroundColor: theme.colors.primary5 },

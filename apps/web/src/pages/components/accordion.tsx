@@ -1,7 +1,7 @@
 import React from "react";
 import type { NextPage } from "next";
 
-import { Radix, ReactAria, styled, theme } from "ui";
+import { Radix, ReactAria, styled } from "ui";
 
 const Flex = styled("div", { display: "flex" });
 
@@ -10,7 +10,6 @@ const Wrapper = styled("section", {
   gridTemplateColumns: "1fr 1fr",
   columnGap: 40,
   padding: 20,
-  backgroundColor: theme.colors.gray10,
 });
 
 const ITEMS = [

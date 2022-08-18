@@ -1,16 +1,13 @@
 import React from "react";
 import type { NextPage } from "next";
 
-import { Radix, ReactAria, styled, theme } from "ui";
-
-const Flex = styled("div", { display: "flex" });
+import { Radix, ReactAria, styled } from "ui";
 
 const Wrapper = styled("section", {
   display: "grid",
   gridTemplateColumns: "1fr 1fr",
   columnGap: 40,
   padding: 20,
-  backgroundColor: theme.colors.gray10,
 });
 
 const ITEMS = [
@@ -41,7 +38,7 @@ const Page: NextPage = () => {
         <h2>Radix</h2>
         <h2>React-ARIA</h2>
 
-        <Radix.Tabs defaultValue={ITEMS[0].value}>
+        <Radix.Tabs defaultValue={ITEMS[0].value} orientation="vertical">
           <Radix.Tabs.List>
             {ITEMS.map((item) => (
               <Radix.Tabs.Trigger

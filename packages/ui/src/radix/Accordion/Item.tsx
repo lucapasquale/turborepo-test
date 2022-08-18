@@ -46,6 +46,7 @@ const StyledTrigger = styled(AccordionPrimitive.Trigger, {
 
 const StyledContent = styled(AccordionPrimitive.Content, {
   overflow: "hidden",
+  backgroundColor: theme.colors.white,
   padding: "8px 16px 24px 64px",
 
   variants: {
@@ -65,7 +66,7 @@ const StyledChevron = styled(ChevronDownIcon, {
   },
 });
 
-type Props = AccordionPrimitive.AccordionItemProps & {
+type Props = React.ComponentProps<typeof StyledItem> & {
   title: React.ReactNode;
   size?: AccordionSize;
 };

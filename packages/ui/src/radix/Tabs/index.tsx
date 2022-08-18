@@ -11,13 +11,12 @@ const StyledTabs = styled(TabsPrimitive.Root, {
 const StyledList = styled(TabsPrimitive.List, {
   flexShrink: 0,
   display: "flex",
-  gap: 8,
-  borderBottom: `1px solid ${theme.colors.primary30}`,
+  gap: 16,
+  borderBottom: `1px solid ${theme.colors.gray20}`,
 });
 
 const StyledTrigger = styled(TabsPrimitive.Trigger, {
   all: "unset",
-  fontFamily: "inherit",
   backgroundColor: "transparent",
   padding: "0 20px",
   height: 45,
@@ -25,10 +24,12 @@ const StyledTrigger = styled(TabsPrimitive.Trigger, {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  fontSize: 15,
+  fontSize: 14,
+  fontWeight: 500,
   lineHeight: 1,
   color: theme.colors.gray100,
   userSelect: "none",
+  maxWidth: "fit-content",
 
   "&:disabled": { color: theme.colors.gray40 },
   "&:hover": { backgroundColor: theme.colors.primary5 },

@@ -1,9 +1,12 @@
 import { SSRProvider } from "react-aria";
 import type { AppProps } from "next/app";
 
-import { Header } from "../components/header";
+import { Header } from "../common/Header";
+import { globalStyles } from "ui";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+  globalStyles();
+
   return (
     <SSRProvider>
       <Header />

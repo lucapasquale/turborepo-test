@@ -76,13 +76,13 @@ type Props = React.ComponentProps<typeof StyledItem> & {
   size?: AccordionSize;
 };
 
-export function AccordionItem(props: Props) {
+export function AccordionItem({ size, isDisabled, ...props }: Props) {
   return (
     <StyledItem {...props}>
       <StyledHeader>
         <ItemTrigger
-          size={props.size}
-          isDisabled={props.isDisabled}
+          size={size}
+          isDisabled={isDisabled}
           onClick={() => props.onClick?.(props.value)}
         >
           {props.title}
@@ -92,7 +92,7 @@ export function AccordionItem(props: Props) {
       </StyledHeader>
 
       {props.selected && (
-        <StyledContent size={props.size}>{props.children}</StyledContent>
+        <StyledContent size={size}>{props.children}</StyledContent>
       )}
     </StyledItem>
   );

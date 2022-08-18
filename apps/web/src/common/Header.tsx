@@ -17,6 +17,10 @@ export function Header() {
           <a>Home</a>
         </Link>
 
+        <Link href="/examples/cdb">
+          <a>Example CDB page</a>
+        </Link>
+
         <Link href="/components/accordion">
           <a>Accordion</a>
         </Link>

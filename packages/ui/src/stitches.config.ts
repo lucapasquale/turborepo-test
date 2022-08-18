@@ -22,13 +22,25 @@ export const {
 
       gray2: "#FCFCFD",
       gray10: "#F2F4F7",
+      gray20: "#EAECF0",
       gray40: "#98A2B3",
       gray50: "#667085",
       gray100: "#090E17",
+    },
+
+    fonts: {
+      sans: "Inter, sans-serif",
     },
   },
   media: {
     sm: "(max-width: 420px)",
     md: "(max-width: 640px)",
+  },
+});
+
+export const globalStyles = globalCss({
+  body: {
+    fontFamily: theme.fonts.sans,
+    backgroundColor: theme.colors.gray10,
   },
 });
