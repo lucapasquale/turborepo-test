@@ -5,13 +5,6 @@ import { Accordion, styled } from "ui";
 
 const Flex = styled("div", { display: "flex" });
 
-const Wrapper = styled("section", {
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr",
-  columnGap: 40,
-  padding: 20,
-});
-
 const ITEMS = [
   {
     value: "item-1",
