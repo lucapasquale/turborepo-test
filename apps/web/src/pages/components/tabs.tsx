@@ -1,14 +1,7 @@
 import React from "react";
 import type { NextPage } from "next";
 
-import { Radix, ReactAria, styled } from "ui";
-
-const Wrapper = styled("section", {
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr",
-  columnGap: 40,
-  padding: 20,
-});
+import { Tabs } from "ui";
 
 const ITEMS = [
   {
@@ -34,40 +27,25 @@ const ITEMS = [
 const Page: NextPage = () => {
   return (
     <>
-      <Wrapper>
-        <h2>Radix</h2>
-        <h2>React-ARIA</h2>
-
-        <Radix.Tabs defaultValue={ITEMS[0].value} orientation="vertical">
-          <Radix.Tabs.List>
-            {ITEMS.map((item) => (
-              <Radix.Tabs.Trigger
-                key={item.value}
-                value={item.value}
-                disabled={item.disabled}
-              >
-                {item.title}
-              </Radix.Tabs.Trigger>
-            ))}
-          </Radix.Tabs.List>
-
+      <Tabs defaultValue={ITEMS[0].value} orientation="vertical">
+        <Tabs.List>
           {ITEMS.map((item) => (
-            <Radix.Tabs.Content key={item.value} value={item.value}>
-              {item.content}
-            </Radix.Tabs.Content>
+            <Tabs.Trigger
+              key={item.value}
+              value={item.value}
+              disabled={item.disabled}
+            >
+              {item.title}
+            </Tabs.Trigger>
           ))}
-        </Radix.Tabs>
+        </Tabs.List>
 
-        <ReactAria.Tabs
-          disabledKeys={ITEMS.filter((i) => i.disabled).map((i) => i.value)}
-        >
-          {ITEMS.map((item) => (
-            <ReactAria.Tabs.Item key={item.value} title={item.title}>
-              {item.content}
-            </ReactAria.Tabs.Item>
-          ))}
-        </ReactAria.Tabs>
-      </Wrapper>
+        {ITEMS.map((item) => (
+          <Tabs.Content key={item.value} value={item.value}>
+            {item.content}
+          </Tabs.Content>
+        ))}
+      </Tabs>
     </>
   );
 };

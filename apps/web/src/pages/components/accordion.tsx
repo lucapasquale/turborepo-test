@@ -1,7 +1,7 @@
 import React from "react";
 import type { NextPage } from "next";
 
-import { Radix, ReactAria, styled } from "ui";
+import { Accordion, styled } from "ui";
 
 const Flex = styled("div", { display: "flex" });
 
@@ -56,36 +56,18 @@ const Page: NextPage = () => {
         {size}
       </Flex>
 
-      <Wrapper>
-        <h2>Radix</h2>
-        <h2>React-ARIA</h2>
-
-        <Radix.Accordion collapsible type="single" size={size}>
-          {ITEMS.map((item) => (
-            <Radix.Accordion.Item
-              key={item.value}
-              value={item.value}
-              title={item.title}
-              disabled={item.disabled}
-            >
-              {item.content}
-            </Radix.Accordion.Item>
-          ))}
-        </Radix.Accordion>
-
-        <ReactAria.Accordion size={size}>
-          {ITEMS.map((item) => (
-            <ReactAria.Accordion.Item
-              key={item.value}
-              value={item.value}
-              title={item.title}
-              isDisabled={item.disabled}
-            >
-              {item.content}
-            </ReactAria.Accordion.Item>
-          ))}
-        </ReactAria.Accordion>
-      </Wrapper>
+      <Accordion collapsible type="single" size={size}>
+        {ITEMS.map((item) => (
+          <Accordion.Item
+            key={item.value}
+            value={item.value}
+            title={item.title}
+            disabled={item.disabled}
+          >
+            {item.content}
+          </Accordion.Item>
+        ))}
+      </Accordion>
     </>
   );
 };
