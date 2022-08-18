@@ -4,10 +4,6 @@ import { styled, theme } from "../../stitches.config";
 import { Item, TabListState, useTabListState } from "react-stately";
 import { AriaTabListProps, useTab, useTabList, useTabPanel } from "react-aria";
 
-const StyledTabs = styled("div", {
-  display: "flex",
-});
-
 const StyledList = styled("div", {
   flexShrink: 0,
   display: "flex",
